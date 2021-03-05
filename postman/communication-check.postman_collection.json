@@ -1,0 +1,232 @@
+{
+	"info": {
+		"_postman_id": "cd1a323c-750a-43fc-a45f-04b0dc42a9b8",
+		"name": "Sequelize-CRUD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "会社DB-従業員情報をID指定して取得",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/find?id=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"find"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "会社DB-従業員情報を全件取得",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "会社DB-従業員情報を登録",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"bababaa\",\n\t\"tel\": \"000-9999-2222\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "会社DB-授業員情報をID指定して更新",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 5,\n\t\"name\": \"cccccxxxxxx\",\n\t\"tel\": \"000-9999-9999\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "会社DB-従業員情報をID指定して削除",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 5\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/remove",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"remove"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "対象DB無し-メッセージを全件取得",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/get",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "対象DB無し-メッセージ登録",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n\t\"message\": \"メッセージ登録を行います\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "対象DB無し-メッセージ更新",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 1,\n\t\"message\": \"メッセージ更新を行います\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/put",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"put"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "対象DB無し-メッセージ削除",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"delete"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
