@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "cd1a323c-750a-43fc-a45f-04b0dc42a9b8",
-		"name": "Sequelize-CRUD",
+		"_postman_id": "c3f6bf4b-8a17-4f93-92c6-2a44d44bb5b2",
+		"name": "communication-check",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -227,6 +227,5 @@
 			},
 			"response": []
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
