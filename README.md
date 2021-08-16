@@ -221,6 +221,9 @@ $ docker-compose down
 
 [express-work の README](https://github.com/ksh-fthr/express-work#用意してある-API) を参照ください。
 
+## 補足
+本プロジェクトのリポジトリで起動した場合､各 API におけるポート番号の指定は不要です｡
+( [リーバスプロキシの設定](./reverse-proxy/nginx/nginx.conf) を行うことで､ポートを `80` にフォワーディングしています )
 
 
 # DB の内容
