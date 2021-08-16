@@ -13,6 +13,7 @@ Docker + バックエンド の環境構築を試したものです。
 今後知見が増えたりアイディアが出たら更新することもあります。
 
 
+
 # 環境について
 
 以下の環境で実行・確認しています。
@@ -29,58 +30,161 @@ Docker + バックエンド の環境構築を試したものです。
 | [Postman](https://www.postman.com/)                          | v7.36.0                 | API の疎通確認で使用           |
 
 
+
 # 構成
 
-```bash
+```zsh
 ./
 ├── LICENSE
 ├── README.md
+├── backend/
+│   ├── Dockerfile
+│   └── express-app/
+│       ├── LICENSE
+│       ├── README.md
+│       ├── app/
+│       │   ├── api-factory.js
+│       │   ├── company-api.js
+│       │   ├── db/
+│       │   │   ├── db-client.js
+│       │   │   └── db-config.js
+│       │   ├── message-api.js
+│       │   └── model/
+│       │       └── employee.js
+│       ├── app.js
+│       ├── bin/
+│       │   └── www*
+│       ├── package-lock.json
+│       ├── package.json
+│       ├── postman/
+│       │   └── communication-check.postman_collection.json
+│       ├── routes/
+│       │   └── index.js
+│       └── sql/
+│           └── initial-db.sql
 ├── docker-compose.yml
-├── express-app
-│   ├── Dockerfile
-│   ├── README.md
-│   ├── app
-│   │   ├── api-factory.js
-│   │   ├── company-api.js
-│   │   ├── db
-│   │   │   ├── db-client.js
-│   │   │   └── db-config.js
-│   │   ├── message-api.js
-│   │   └── model
-│   │       └── employee.js
-│   ├── app.js
-│   ├── bin
-│   │   └── www
-│   ├── package-lock.json
-│   ├── package.json
-│   └── routes
-│       └── index.js
-├── nginx
-│   ├── Dockerfile
-│   └── nginx.conf
-├── postgresql
-│   ├── Dockerfile
-│   └── init
-│       └── initialize.sql
-└── postman
-    └── communication-check.postman_collection.json
+├── postman/
+│   └── communication-check.postman_collection.json
+├── reverse-proxy/
+│   └── nginx/
+│       ├── Dockerfile
+│       └── nginx.conf
+└── storage/
+    └── db/
+        ├── LICENSE
+        ├── README.md
+        ├── docker-compose.yml
+        └── postgresql/
+            ├── Dockerfile
+            └── init/
+                └── initialize.sql
 ```
 
+
+
 # ブランチについて
-環境構築のためのプロジェクトなので、ブランチを切って修正することは考えていません。 `master` ブランチのみで更新を行う予定です。
+
+構成変更等でブランチを切って修正することはありますが､それらは一時的なものになります｡
+
+基本 `main` ブランチのみを残し､学習用のブランチが残ることはありません｡
+
 
 
 # コンテナについて
-Express, PostgreSQL のコンテナについては、次のリポジトリの内容を持ってきています。
+
+Express, PostgreSQL のコンテナについては、次のリポジトリを `git submodule` で登録しています｡
 
 - [ksh-fthr/express-work](https://github.com/ksh-fthr/express-work)
 - [ksh-fthr/ postgresql-in-docker](https://github.com/ksh-fthr/postgresql-in-docker)
 
-Nginx を含め、それぞれを一つの `docker-compose.yml` で扱うために Express - PostgreSQL の接続設定の箇所で修正が入っています。
-また API のインターフェースにおいて若干の変更がありますが、それ以外の処理でオリジナルの上記から大きな変更はありません。
+
+
+## 初回時
+
+次のコマンドを実行し､予め各リポジトリを取得してきてください｡
+
+```zsh
+$ git submodule update -i
+```
+
+
+
+## 二回目以降
+
+次のコマンドを実行し､`sbumodule` であるリポジトリの更新を行ってください｡
+( 必須ではありません )
+
+```zsh
+$ git pull
+```
+
+
+
+## 補足-1
+
+バックエンドのアプリに対して以下の修正を行ってください｡
+
+### ファイル
+
+```zsh
+./
+├── backend/
+│   └── express-app/
+│       ├── app/
+│       │   ├── db/
+│       │   │   └── db-config.js # ⇐ このファイルを修正する
+```
+
+
+
+### 修正内容
+
+```javascript
+/**
+ * company に対する接続設定を定義
+ */
+const dbConfig = new Sequelize('company', 'postgres', 'pgadmin', {
+  //
+  // 接続先ホストを指定
+  //
+  // docker 経由で動かす場合は `docker-compose.yml` の `services` にあるエントリ: `postgresql` を指定する
+  host: 'postgresql',    // こちらを有効にする
+  //
+  // docker 経由で動かさない場合は `localhost` を指定する 
+  // host: 'localhost',  // ⇐ こちらをコメントアウト
+
+  // 省略
+});
+```
+
+
+
+## 補足-2
+
+### docker-compose.yml について
+
+このプロジェクトでは下記に配置されている `docker-compose.yml` は使用しません｡
+
+```zsh
+./
+└── storage/
+    └── db/
+        ├── docker-compose.yml # ⇐ この docker-compose.yml は使用しない
+```
+
+
+
+リポジトリのルート直下にある `docker-compose.yml` だけを使用します｡
+
+```zsh
+./
+├── docker-compose.yml         # ⇐ この docker-compose.yml だけを使用する
+```
+
 
 
 # コンテナに対する操作
+
 ## 起動
 次のコマンドを実行することで Docker 上に Nginx, Express, PostgreSQL が起動します。
 
@@ -90,27 +194,43 @@ $ docker-compose up -d --build
 
 `-d` はバックグラウンドで動かすオプションです。 フォアグラウンドで動かしたい場合は `-d` をつけずに実行してください。
 
+
+
 ## 停止
+
 ### サービスの停止
 サービスは停止するが Docker コンテナは削除したくない場合は下記コマンドを実行してください。
 
-```bash
+```zsh
 $ docker-compose stop
 ```
 
+
+
 ### コンテナの停止
+
 サービスの停止とサービスを提供するコンテナの削除、それからネットワークも削除したい場合は下記コマンドを実行してください。
 
-```bash
+```zsh
 $ docker-compose down
 ```
 
+
+
 # API の内容
-[本リポジトリの express-app/ の README](./express-app/README.md) を参照ください。
+
+[express-work の README](https://github.com/ksh-fthr/express-work#用意してある-API) を参照ください。
+
+
 
 # DB の内容
-[本リポジトリの postgresql/ の README](./postgresql/README.md) を参照ください。
+
+[postgresql-in-docker の README](https://github.com/ksh-fthr/postgresql-in-docker#作成される-db) を参照ください。
+
+
 
 # 動作確認
-[express-app/ の README](./express-app/README.md) にも記載しておりますが、疎通確認のためのデータを用意しております。
+
+疎通確認のためのデータを用意しております。
 確認の際は [Postman のデータ](./postman/communication-check.postman_collection.json) をお試しください。
+
