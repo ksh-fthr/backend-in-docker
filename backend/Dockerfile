@@ -7,9 +7,9 @@ FROM node:12.18.3 as build-stage
 EXPOSE 3000
 
 WORKDIR /app
-COPY ./package*.json /app/
+COPY ./express-app/package*.json /app/
 
 RUN npm install
-COPY ./ /app/
+COPY ./express-app/ /app/
 
 CMD [ "node", "./bin/www" ]
