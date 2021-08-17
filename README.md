@@ -115,14 +115,7 @@ $ git submodule update -i
 ( 必須ではありません )
 
 ```zsh
-$ git pull
-```
-
-もし `git pull` したことで `submodule` に対して `modified` が出ているようでしたら､それは `submodule` 側のリポジトリが更新された状態を示しています｡<br />
-次のコマンドを実行すれば `modified` は解消されます｡
-
-```zsh
-$ git submodule update
+$ git submodule update --remote
 ```
 
 ## 補足-1
