@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "c3f6bf4b-8a17-4f93-92c6-2a44d44bb5b2",
-		"name": "communication-check",
+		"_postman_id": "3f3e0c48-cdd4-48f3-8e70-bc6f79e2a4f8",
+		"name": "communication-check-reverse-proxy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -11,12 +11,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost/find?id=2",
+					"raw": "http://localhost/employee/find?id=2",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"path": [
+						"employee",
 						"find"
 					],
 					"query": [
@@ -35,12 +36,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost/find",
+					"raw": "http://localhost/employee/find",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"path": [
+						"employee",
 						"find"
 					]
 				}
@@ -62,12 +64,13 @@
 					"raw": "{\n\t\"name\": \"bababaa\",\n\t\"tel\": \"000-9999-2222\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost/register",
+					"raw": "http://localhost/employee/register",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"path": [
+						"employee",
 						"register"
 					]
 				}
@@ -86,15 +89,16 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 5,\n\t\"name\": \"cccccxxxxxx\",\n\t\"tel\": \"000-9999-9999\"\n}"
+					"raw": "{\n    \"id\": 4,\n\t\"name\": \"cccccxxxxxx\",\n\t\"tel\": \"000-9999-9999\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost/update",
+					"raw": "http://localhost/employee/update",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"path": [
+						"employee",
 						"update"
 					]
 				}
@@ -116,13 +120,33 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost/remove",
+					"raw": "http://localhost/employee/remove",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"path": [
+						"employee",
 						"remove"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "会社DB-プロジェクトのメンバ情報を全件取得",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/member/findAll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"member",
+						"findAll"
 					]
 				}
 			},
@@ -134,12 +158,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost/get",
+					"raw": "http://localhost/message/get",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"path": [
+						"message",
 						"get"
 					]
 				}
@@ -161,12 +186,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost/post",
+					"raw": "http://localhost/message/post",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"path": [
+						"message",
 						"post"
 					]
 				}
@@ -188,12 +214,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost/put",
+					"raw": "http://localhost/message/put",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"path": [
+						"message",
 						"put"
 					]
 				}
@@ -215,12 +242,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost/delete",
+					"raw": "http://localhost/message/delete",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"path": [
+						"message",
 						"delete"
 					]
 				}
