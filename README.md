@@ -9,7 +9,7 @@ Docker + バックエンド の環境構築を試したものです。
 | Nginx              | リバースプロキシ    | [NGINX(エンジンエックス)｜日本公式サイト](https://www.nginx.co.jp/) |
 | PostgreSQL         | DB               | [日本PostgreSQLユーザ会](https://www.postgresql.jp/)         |
 
-これらを Docker 上に構築してバックエンドの環境を [Docker Compose](https://docs.docker.jp/compose/toc.html) を使ってひとまとめにしよう、というのが主旨です。
+これらを Docker 上に構築してバックエンドの環境を [Docker Compose](https://docs.docker.jp/compose/toc.html) を使ってひとまとめにしよう、というのが主旨です。<br />
 今後知見が増えたりアイディアが出たら更新することもあります。
 
 
@@ -111,14 +111,19 @@ $ git submodule update -i
 
 ## 二回目以降
 
-次のコマンドを実行し､`sbumodule` であるリポジトリの更新を行ってください｡
+次のコマンドを実行し､`submodule` であるリポジトリの更新を行ってください｡<br />
 ( 必須ではありません )
 
 ```zsh
 $ git pull
 ```
 
+もし `git pull` したことで `submodule` に対して `modified` が出ているようでしたら､それは `submodule` 側のリポジトリが更新された状態を示しています｡<br />
+次のコマンドを実行すれば `modified` は解消されます｡
 
+```zsh
+$ git submodule update
+```
 
 ## 補足-1
 
