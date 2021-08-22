@@ -114,56 +114,21 @@ $ git submodule update -i
 次のコマンドを実行し､`submodule` であるリポジトリの更新を行ってください｡
 
 ```zsh
+# backend の更新
+$ cd backend/express-app
+$ git pull
+# DB の更新
+$ cd ../../storage/db
 $ git pull
 ```
 
-もし `git pull` したことで `submodule` に対して `modified` が出ているようでしたら､それは `submodule` 側のリポジトリが更新された状態を示しています｡<br />
-次のコマンドを実行すれば `submodule` の更新が行われ、 `modified` は解消されます｡
+または次のコマンドを実行し、`submodule` であるリポジトリの更新を行ってください｡
 
 ```zsh
 $ git submodule update --remote
 ```
 
-## 補足-1
-
-バックエンドのアプリに対して以下の修正を行ってください｡
-
-### ファイル
-
-```zsh
-./
-├── backend/
-│   └── express-app/
-│       ├── app/
-│       │   ├── db/
-│       │   │   └── db-config.js # ⇐ このファイルを修正する
-```
-
-
-
-### 修正内容
-
-```javascript
-/**
- * company に対する接続設定を定義
- */
-const dbConfig = new Sequelize('company', 'postgres', 'pgadmin', {
-  //
-  // 接続先ホストを指定
-  //
-  // docker 経由で動かす場合は `docker-compose.yml` の `services` にあるエントリ: `postgresql` を指定する
-  host: 'postgresql',    // こちらを有効にする
-  //
-  // docker 経由で動かさない場合は `localhost` を指定する 
-  // host: 'localhost',  // ⇐ こちらをコメントアウト
-
-  // 省略
-});
-```
-
-
-
-## 補足-2
+## 補足
 
 ### docker-compose.yml について
 
