@@ -114,19 +114,22 @@ $ git submodule update -i
 次のコマンドを実行し､`submodule` であるリポジトリの更新を行ってください｡
 
 ```zsh
-# backend の更新
-$ cd backend/express-app
-$ git pull
-# DB の更新
-$ cd ../../storage/db
-$ git pull
-```
-
-または次のコマンドを実行し、`submodule` であるリポジトリの更新を行ってください｡
-
-```zsh
 $ git submodule update --remote
 ```
+
+```zsh
+# backend の更新
+$ cd backend/express-app
+$ git checkout develop
+$ git pull
+
+# DB の更新
+$ cd ../../storage/db
+$ git checkout develop
+$ git pull
+```
+
+
 
 ## 補足
 
