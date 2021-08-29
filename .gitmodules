@@ -1,8 +1,8 @@
-[submodule "backend/express-app"]
-	path = backend/express-app
-	url = https://github.com/ksh-fthr/express-work
-	branch = master
 [submodule "storage/db"]
 	path = storage/db
 	url = https://github.com/ksh-fthr/postgresql-in-docker
 	branch = main
+[submodule "backend/express-app"]
+	path = backend/express-app
+	url = https://github.com/ksh-fthr/express-work
+	branch = develop
